@@ -1,0 +1,123 @@
+﻿<Page
+    x:Class="Module2_2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Module2_2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical">
+            <!-- Hub Example -->
+            <Hub Header="News" Height="200">
+                <!-- The Hub is composed of HubSections which also have a header -->
+                <HubSection MinWidth="600" Header="Latest">
+                    <!-- We can hardcode data (we shouldn't) or we can use data
+                        Templates, in which we can use any of the existent layouts
+                        Grids, StackPanes, Canvas, etc.
+                     -->
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="The most recent news will be here." 
+                   Style="{ThemeResource BodyTextBlockStyle}" />
+                        </Grid>
+                    </DataTemplate>
+                </HubSection>
+                <HubSection Header="Tech" IsHeaderInteractive="True" MinWidth="250">
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="Tech news goes here."
+                   Style="{ThemeResource BodyTextBlockStyle}" />
+                            <TextBlock Text="Click the header to go to the Tech page."
+                   Style="{ThemeResource BodyTextBlockStyle}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </HubSection>
+            </Hub>
+            <!-- Pivot Control, This control  displays a tabbed list
+                 of sections in which the user has specific information
+                 this is useful to show different information on the same screen
+             -->
+            <Pivot Title="This is a Pivot" Margin="0,0,965,0">
+                <Pivot.RightHeader>
+                    <CommandBar ClosedDisplayMode="Compact">
+                        <AppBarButton Icon="Back" Label="Previous"/>
+                        <AppBarButton Icon="Forward" Label="Next"/>
+                    </CommandBar>
+                </Pivot.RightHeader>
+                <PivotItem Header="Pivot Item 1">
+                    <TextBlock Text="This is the content of the first pivot item"/>
+                </PivotItem>
+                <PivotItem Header="Pivot Item 2">
+                    <TextBlock Text="This is the content of the second pivot item"/>
+                </PivotItem>
+                <PivotItem Header="Pivot Item 3">
+                    <TextBlock Text="This is the content of the third pivot item"/>
+                </PivotItem>
+            </Pivot>
+            <!-- AppBar Control, Appbars are useful to represent custom layouts  in the top
+                 or bottom menus in the application, this is used mostly for the most commonly used
+                 commands, or system wide commands
+             -->
+            <Page>
+                <AppBar>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Shuffle"/>
+                        <Button Content="Repeat"/>
+                        <Rectangle Height="30" Width="1" Margin="10" Fill="{ThemeResource AppBarItemForegroundThemeBrush}"/>
+                        <Button Content="Back"/>
+                    </StackPanel>
+                </AppBar>
+            </Page>
+            <Rectangle Height="20"></Rectangle>
+            <!-- When trying to emulate or to be more in 'tune' with other system apps you should use an appbar -->
+            <Page>
+                <CommandBar>
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton Icon="Play" Label="Play" />
+                        <AppBarButton Icon="Stop" Label="Stop" />
+                    </CommandBar.SecondaryCommands>
+                    <AppBarButton Icon="Shuffle" Label="Shuffle"/>
+                    <AppBarButton Icon="RepeatAll" Label="Repeat All"/>
+                    <AppBarSeparator/>
+                </CommandBar>
+            </Page>
+            <Rectangle Height="20"></Rectangle>
+            <RelativePanel>
+                <!-- The relative panel allows you to have a grid like layout 
+                     but instead of specifying coordinates, you specify which position relative to
+                     another control
+                 -->
+                <Button x:Name="buttonA" Content="Button A" />
+                <Button x:Name="buttonB" Content="Button B" RelativePanel.RightOf="buttonA" />
+                <Button x:Name="buttonC" Content="Button C" RelativePanel.Below="buttonB" RelativePanel.RightOf="buttonA" />
+                <Button x:Name="buttonD" Content="Button D" RelativePanel.Below="buttonC" RelativePanel.RightOf="buttonC" />
+            </RelativePanel>
+            <Rectangle Height="20"></Rectangle>
+            <Button Content="Options">
+                <!-- Flayouts are usefull to show quick information  or presenting different
+                     Options to the user saving space
+                 -->
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Test" />
+                        <MenuFlyoutSeparator />
+                        <ToggleMenuFlyoutItem Text="Check Me" IsChecked="True" />
+                        <ToggleMenuFlyoutItem Text="Don't Check Me" IsChecked="False" />
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+            <Rectangle Height="20"></Rectangle>
+            <!-- The toggle switch can have two forms one that looks like a switch
+                 and another that is a button that when is toggled changes color until untoggled
+             -->
+            <ToggleSwitch OnContent="I Agree" OffContent="I Disagree" />
+            <Rectangle Height="20"></Rectangle>
+            <ToggleButton Content="I Agree" />
+            <Rectangle Height="20"></Rectangle>
+            <Slider Minimum="0" Maximum="100" Value="85" ToolTipService.ToolTip="Select a value!" />
+        </StackPanel>
+        
+    </Grid>
+</Page>
